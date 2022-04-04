@@ -12,8 +12,6 @@ function ChatView() {
   const [room, setRoom] = useState("");
 
   useEffect(() => {
-    console.log(location);
-
     setName(location.state.user.name);
     setRoom(location.state.user.room);
 

@@ -20,10 +20,10 @@ app.use(cors());
 const server = http.createServer(app);
 
 const io = socketio(server, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
+  // cors: {
+  //   origin: "http://localhost:3000",
+  //   methods: ["GET", "POST"],
+  // },
 });
 
 io.on("connection", (socket) => {
@@ -47,6 +47,7 @@ io.on("connection", (socket) => {
         text: `${user.name} has joined`,
         onlineUsers: [...getUserInRoom(user.room)],
       });
+
       socket.join(user.room);
 
       socket.broadcast.to(user.room).emit("roomInfo", {
@@ -72,7 +73,7 @@ io.on("connection", (socket) => {
     const user = removeUser(id);
 
     if (user) {
-      io.to(user.room).emit("message", {
+      socket.broadcast.to(user.room).emit("message", {
         user: "admin",
         text: `${user.name} just left the room.`,
         onlineUsers: [...getUserInRoom(user.room)],
@@ -81,8 +82,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log("====================================");
-  console.log(`Servr has started on port: ${PORT}`);
-  console.log("====================================");
-});
+server.listen(PORT);

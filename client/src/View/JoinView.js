@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { Container, Col, Row, Form, Button } from "react-bootstrap";
-import { Link, useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import { Container, Col, Row, Form } from "react-bootstrap";
+import {  useNavigate } from "react-router-dom";
 import { ActivityIndicator } from "react-native-web";
 import { signInUser } from "../Controllers";
+import { SocialIcon } from "react-social-icons";
+import { GITHUB_URL, LINKEDIN, MAILTO } from "../shared";
 
 function JoinView(params) {
   const [name, setName] = useState("");
@@ -36,7 +38,6 @@ function JoinView(params) {
       );
     } else setLoginbtn("Login");
   }, [isLogging]);
-
 
   return (
     <Container className="main-container">
@@ -84,7 +85,34 @@ function JoinView(params) {
               </div>
             </Form>
           </Col>
+          <Col className="d-flex justify-content-center mt-5">
+          <SocialIcon
+            className="icons"
+            target="_blank"
+            rel="noopener noreferrer"
+            fgColor="black"
+            bgColor="whitesmoke"
+            url={LINKEDIN}
+          />
+          <SocialIcon
+            className="icons"
+            target="_blank"
+            rel="noopener noreferrer"
+            fgColor="black"
+            bgColor="whitesmoke"
+            url={GITHUB_URL}
+          />
+          <SocialIcon
+            className="icons"
+            target="_blank"
+            rel="noopener noreferrer"
+            fgColor="black"
+            bgColor="whitesmoke"
+            url={MAILTO}
+          />
         </Col>
+        </Col>
+       
       </Row>
       <ToastContainer />
     </Container>

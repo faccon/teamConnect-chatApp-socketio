@@ -1,4 +1,3 @@
-import React, { useRef, useState } from "react";
 import { socket } from "../Model";
 
 export function signInUser(name, room, callback) {

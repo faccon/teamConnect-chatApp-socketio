@@ -5,5 +5,5 @@ export const socket = io(ENDPOINT);
 
 export let socketID = "";
 socket.on("connect", () => {
-  socketID = socket.if;
+  socketID = socket.id;
 });

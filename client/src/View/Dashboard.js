@@ -5,17 +5,8 @@ import { socket } from "../Model";
 function Dashboard({ onlineUsers }) {
   const [Online, setOnline] = useState(null);
 
-  // useEffect(() => {
-  //   socket.on("roomInfo", (message) => {
-  //     console.log('saasas');
-  //     setOnline(message);
-  //     console.log(message);
-  //   });
-  // },[Online]);
-
   useEffect(() => {
     socket.on("message", (res) => {
-      console.log(res.onlineUsers);
       setOnline(res.onlineUsers);
     });
   });

@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from 'react'
-import { Col, Container, Form, Row } from 'react-bootstrap'
-import { socket } from '../Model'
-import ReactEmoji from 'react-emoji'
+import React, { useEffect, useState } from "react";
+import { Col, Form, Row } from "react-bootstrap";
+import { socket } from "../Model";
+import ReactEmoji from "react-emoji";
 
 function ChatsContainer({ name }) {
-  const [message, setMessage] = useState('')
-  const [messages, setMessages] = useState([])
-
-
+  const [message, setMessage] = useState("");
+  const [messages, setMessages] = useState([]);
 
   function sendMessage(event) {
     if (event) {
-      event.preventDefault()
+      event.preventDefault();
     }
     if (message) {
-      socket.emit('sendMessage', message, () => {
-        setMessage('')
-      })
+      socket.emit("sendMessage", message, () => {
+        setMessage("");
+      });
     }
   }
 
   useEffect(() => {
-    socket.on('message', (message) => {
-      setMessages([...messages, message])
-      console.log(messages);
-    })
-  }, [messages])
+    socket.on("message", (message) => {
+      setMessages([...messages, message]);
+    });
+  }, [messages]);
 
   return (
     <div className="chat-container">
@@ -36,21 +33,21 @@ function ChatsContainer({ name }) {
           .map((item, index) => {
             return (
               <>
-                {item.user == 'admin' ? (
+                {item.user === "admin" ? (
                   <div className="admin">{item.text}</div>
                 ) : (
                   <div
                     id={index.toString()}
                     className={
                       item.user === name
-                        ? 'msg-container-self'
-                        : 'msg-container'
+                        ? "msg-container-self"
+                        : "msg-container"
                     }
                   >
                     <Row>
                       <Col
                         xs={12}
-                        className={item.user == name ? 'd-none' : 'msg-title'}
+                        className={item.user === name ? "d-none" : "msg-title"}
                       >
                         {item.user}
                       </Col>
@@ -61,7 +58,7 @@ function ChatsContainer({ name }) {
                   </div>
                 )}
               </>
-            )
+            );
           })}
       </div>
 
@@ -75,20 +72,24 @@ function ChatsContainer({ name }) {
               placeholder="Type a message ..."
               onChange={(event) => setMessage(event.target.value)}
               onKeyDown={(event) =>
-                event.code == 'Enter' ? sendMessage(event) : null
+                event.code === "Enter" ? sendMessage(event) : null
               }
               value={message}
             />
           </Form.Group>
         </Col>
-        <Col xs={2} className='send-icon d-flex align-items-center'>
-          <div className='d-flex align-items-center' onClick={() => sendMessage(null)}>
+        <Col
+          xs={2}
+          onClick={() => sendMessage(null)}
+          className="send-icon d-flex align-items-center justify-content-center"
+        >
+          <div className="d-flex align-items-center send">
             <span className="material-icons md-24">send</span>
           </div>
         </Col>
       </Row>
     </div>
-  )
+  );
 }
 
-export default ChatsContainer
+export default ChatsContainer;
