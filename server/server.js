@@ -49,7 +49,7 @@ io.on("connection", (socket) => {
       });
       socket.join(user.room);
 
-      io.to(user.room).emit("roomInfo", {
+      socket.broadcast.to(user.room).emit("roomInfo", {
         room: user.room,
         onlineUsers: [...getUserInRoom(user.room)],
       });

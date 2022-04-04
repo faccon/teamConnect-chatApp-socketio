@@ -3,7 +3,7 @@ import { Col, Container, Row } from "react-bootstrap";
 import { socket } from "../Model";
 
 function Dashboard({ onlineUsers }) {
-  const [Online, setOnline] = useState();
+  const [Online, setOnline] = useState(null);
 
   // useEffect(() => {
   //   socket.on("roomInfo", (message) => {
@@ -14,12 +14,11 @@ function Dashboard({ onlineUsers }) {
   // },[Online]);
 
   useEffect(() => {
-    socket.on('roomInfo', (message) => {
-      // setMessages([...messages, message])
-      console.log(message.onlineUsers);
-    })
-  })
-
+    socket.on("message", (res) => {
+      console.log(res.onlineUsers);
+      setOnline(res.onlineUsers);
+    });
+  });
 
   return (
     <div className="right-panel">
@@ -38,13 +37,11 @@ function Dashboard({ onlineUsers }) {
             <span className="online">Online:</span>
           </Col>
           <ul className="online-list-marker">
-            {
-            // Online
-            //   ? Online.map((item, index) => {
-            //       return <li id={index.toString()}>{item}</li>;
-            //     })
-            //   :
-               onlineUsers.map((item, index) => {
+            {Online !== null
+              ? Online.map((item, index) => {
+                  return <li id={index.toString()}>{item}</li>;
+                })
+              : onlineUsers.map((item, index) => {
                   return <li id={index.toString()}>{item}</li>;
                 })}
           </ul>
