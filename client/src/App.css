@@ -1,38 +1,323 @@
-.App {
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Secular+One&display=swap');
+
+:root {
+  --header-height: 10vh;
+}
+
+html,
+body {
+  height: 100vh;
+  width: 100%;
+  background-color: white;
+}
+
+.main-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  width: 80%;
+}
+
+.inner-container {
+  border: 1px solid transparent;
+  padding: 20px 0 20px 0;
+  border-radius: 10px;
+  background-color: white;
+  min-width: 100%;
+}
+
+.form-header {
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+h1 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 14px;
+}
+.faint {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+#logo {
+  width: 180px;
+}
+
+.header-container {
+  margin-top: 10px;
+  min-height: var(--header-height);
+  background-color: aliceblue;
+  /* background-color: rgb(34, 34, 155); */
+  color: black;
+}
+
+.test1 {
+  background-color: antiquewhite;
+}
+.test2 {
+  background-color: whitesmoke;
+}
+.test3 {
+  background-color: bisque;
+}
+
+.back-icon {
+  display: block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 2em;
+}
+
+.dp-container {
+  display: block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: white;
+  color: black;
+  text-align: center;
+  font-size: 2em;
+}
+
+.md-24 {
+  font-size: 25px;
+}
+
+.header-name {
+  text-align: center;
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.header-status {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.chat-container {
+  background: linear-gradient(rgb(223, 221, 221), white);
+  /* background-color: rgb(223, 221, 221); */
+  width: 100%;
+  height: 85vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.chat-input {
+  background-color: inherit;
+  width: 100%;
+  border: 0;
+  min-height: 50px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.bottom-row {
+  position: relative;
+  top: 1%;
+  border-radius: 20px;
+  width: 90%;
+  border: 1px rgb(227, 234, 243) solid;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-left: 5%;
+  height: fit-content;
+  padding: 2px;
+  background-color: rgb(227, 234, 243);
+}
+
+.round {
+  display: block;
+  height: 40px;
+  width: 40px;
+  line-height: 40px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: whitesmoke;
+  color: black;
+  text-align: center;
+  font-size: 2em;
+}
+
+.msg-container-self {
+  background-color: rgb(41, 41, 181);
+  margin-bottom: 10px;
+  max-width: 80%;
+  border-radius: 10px 10px 0px 10px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-left: auto;
+  max-height: fit-content;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.msg-container {
+  background-color: rgb(180, 233, 182);
+  margin-bottom: 10px;
+  width: fit-content;
+  max-width: 70%;
+  border-radius: 10px 10px 10px 0;
+  padding: 10px;
+  margin-left: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.msg-title {
+  font-size: 11px;
+  font-style: italic;
+}
+
+.msg-msg {
+  font-size: 13px;
+}
+
+.chat-scrollable {
+  height: 90%;
+  width: 100%;
+  margin-bottom: 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+.admin {
+  text-align: center;
+  font-size: 10px;
+  padding: 5px 0 5px 0;
+}
+
+option {
+  background-color: white;
+}
+
+.line {
+  color: black;
+  width: 100%;
+  height: 3px;
+  margin-bottom: 20px;
+  border-radius: 1px;
+  background: linear-gradient(to Right, rgb(160, 56, 56), rgb(44, 129, 65));
+}
+
+.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.submit-button {
+  background-color: black;
+  text-align: center;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 25px;
+  min-height: 45px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
+.online-dot {
+  height: 10px;
+  width: 10px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background-color: green;
+  font-size: 2em;
+  margin: 0 0 0 10px;
+}
+
+.link {
+  text-decoration: none;
+}
+/* Extra small devices (phones, 600px and down)
+@media only screen and (max-width: 600px) {...} */
+
+/* Small devices (portrait tablets and large phones, 600px and up)
+@media only screen and (min-width: 600px) {...} */
+
+/* Medium devices (landscape tablets, 768px and up)*/
+@media only screen and (min-width: 768px) {
+  .left-container {
+    margin-top: 25%;
+    height: 100%;
+    width: 100%;
+    background-image: url('../public/images/girl.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 0;
+    padding-top: 120%;
   }
-  to {
-    transform: rotate(360deg);
+
+  .chatsview-cont {
+    width: 90vw;
+    height: 80vh;
+    /* background-color: black; */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    max-height: 600px;
+  }
+
+  .chat-container {
+    height: 67vh;
+  }
+
+  .right-panel {
+    height: 80vh;
+    width: 100%;
+    margin-top: 2.5%;
+  }
+
+  .title {
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .notes {
+    font-size: 14px;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* .online {
+    font-weight: bold;
+  } */
+
+  .online-list-marker {
+    list-style-position: inside;
+  }
+
+  .online-list-marker ::marker {
+    color: green;
+  }
+
+  .header-container {
+    margin-top: 10px;
+    min-height: var(--header-height);
+    color: black;
+  }
+
+  .brand {
+    text-align: center;
+    /* background-color: aliceblue; */
+
   }
 }
+
+/* Large devices (laptops/desktops, 992px and up)
+@media only screen and (min-width: 992px) {...} */
+
+/* Extra large devices (large laptops and desktops, 1200px and up)
+@media only screen and (min-width: 1200px) {...} */

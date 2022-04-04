@@ -1,0 +1,94 @@
+import React, { useEffect, useState } from 'react'
+import { Col, Container, Form, Row } from 'react-bootstrap'
+import { socket } from '../Model'
+import ReactEmoji from 'react-emoji'
+
+function ChatsContainer({ name }) {
+  const [message, setMessage] = useState('')
+  const [messages, setMessages] = useState([])
+
+
+
+  function sendMessage(event) {
+    if (event) {
+      event.preventDefault()
+    }
+    if (message) {
+      socket.emit('sendMessage', message, () => {
+        setMessage('')
+      })
+    }
+  }
+
+  useEffect(() => {
+    socket.on('message', (message) => {
+      setMessages([...messages, message])
+      console.log(messages);
+    })
+  }, [messages])
+
+  return (
+    <div className="chat-container">
+      <div className="chat-scrollable">
+        {messages
+          .slice(0)
+          .reverse()
+          .map((item, index) => {
+            return (
+              <>
+                {item.user == 'admin' ? (
+                  <div className="admin">{item.text}</div>
+                ) : (
+                  <div
+                    id={index.toString()}
+                    className={
+                      item.user === name
+                        ? 'msg-container-self'
+                        : 'msg-container'
+                    }
+                  >
+                    <Row>
+                      <Col
+                        xs={12}
+                        className={item.user == name ? 'd-none' : 'msg-title'}
+                      >
+                        {item.user}
+                      </Col>
+                      <Col xs={12} className="msg-msg">
+                        {ReactEmoji.emojify(item.text)}
+                      </Col>
+                    </Row>
+                  </div>
+                )}
+              </>
+            )
+          })}
+      </div>
+
+      <Row className="d-flex align-items-center bottom-row">
+        <Col xs={10}>
+          <Form.Group>
+            <Form.Control
+              type="text"
+              name="message"
+              className="chat-input"
+              placeholder="Type a message ..."
+              onChange={(event) => setMessage(event.target.value)}
+              onKeyDown={(event) =>
+                event.code == 'Enter' ? sendMessage(event) : null
+              }
+              value={message}
+            />
+          </Form.Group>
+        </Col>
+        <Col xs={2} className='send-icon d-flex align-items-center'>
+          <div className='d-flex align-items-center' onClick={() => sendMessage(null)}>
+            <span className="material-icons md-24">send</span>
+          </div>
+        </Col>
+      </Row>
+    </div>
+  )
+}
+
+export default ChatsContainer
