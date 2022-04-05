@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router";
 import { Container, Row, Col } from "react-bootstrap";
-import { ENDPOINT, socket } from "../Model";
+import { socket } from "../Model";
 import Header from "../Components/Header";
 import ChatsContainer from "../Components/ChatsContainer";
 import Dashboard from "./Dashboard";
@@ -11,15 +11,16 @@ function ChatView() {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
 
+  setName(location.state.user.name);
+  setRoom(location.state.user.room);
+
   useEffect(() => {
-    setName(location.state.user.name);
-    setRoom(location.state.user.room);
 
     return () => {
       socket.emit("disconnect");
       socket.off();
     };
-  }, [ENDPOINT, location.search]);
+  }, [room, location.search]);
 
   return (
     <Container className="chatsview-cont">
