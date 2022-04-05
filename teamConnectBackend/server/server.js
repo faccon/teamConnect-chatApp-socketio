@@ -20,10 +20,10 @@ app.use(cors());
 const server = http.createServer(app);
 
 const io = socketio(server, {
-  // cors: {
-  //   origin: "http://localhost:3000",
-  //   methods: ["GET", "POST"],
-  // },
+  cors: {
+    origin: "https://teamconnect.eu-gb.mybluemix.net",
+    methods: ["GET", "POST"],
+  },
 });
 
 io.on("connection", (socket) => {
