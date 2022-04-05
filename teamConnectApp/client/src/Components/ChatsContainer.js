@@ -21,8 +21,9 @@ function ChatsContainer({ name }) {
   useEffect(() => {
     socket.on("message", (message) => {
       setMessages([...messages, message]);
+      // console.log(message);
     });
-  }, [messages]);
+  });
 
   return (
     <div className="chat-container">

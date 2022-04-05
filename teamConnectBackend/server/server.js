@@ -20,10 +20,10 @@ app.use(cors());
 const server = http.createServer(app);
 
 const io = socketio(server, {
-  cors: {
-    origin: "https://teamconnect.eu-gb.mybluemix.net",
-    methods: ["GET", "POST"],
-  },
+  // cors: {
+  //   origin: "https://localhost:3000",
+  //   methods: ["GET", "POST"],
+  // },
 });
 
 io.on("connection", (socket) => {
@@ -31,7 +31,7 @@ io.on("connection", (socket) => {
 
   socket.on("join", ({ name, room }, callback) => {
     const { error, user, onlineUsers } = addUser({ id, name, room });
-    const inr = getUserInRoom(user.room);
+    console.log("User has Joined chat");
 
     if (error) {
       callback({ error, user: null });
@@ -48,19 +48,21 @@ io.on("connection", (socket) => {
         onlineUsers: [...getUserInRoom(user.room)],
       });
 
-      socket.join(user.room);
-
+      
       socket.broadcast.to(user.room).emit("roomInfo", {
         room: user.room,
         onlineUsers: [...getUserInRoom(user.room)],
       });
-
+      socket.join(user.room);
+      
       callback({ error, user, onlineUsers: [...onlineUsers] });
     }
   });
 
   socket.on("sendMessage", (message, callback) => {
     const user = getUser(id);
+
+    console.log(message);
     io.to(user.room).emit("message", {
       user: user.name,
       text: message,
@@ -71,7 +73,7 @@ io.on("connection", (socket) => {
 
   socket.on("disconnect", () => {
     const user = removeUser(id);
-
+    console.log('hee');
     if (user) {
       socket.broadcast.to(user.room).emit("message", {
         user: "admin",

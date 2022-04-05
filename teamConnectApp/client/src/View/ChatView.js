@@ -11,16 +11,18 @@ function ChatView() {
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
 
-  setName(location.state.user.name);
-  setRoom(location.state.user.room);
-
   useEffect(() => {
+    const name = location.state.user.name;
+    const room = location.state.user.room;
+
+    setName(name);
+    setRoom(room);
 
     return () => {
       socket.emit("disconnect");
       socket.off();
     };
-  }, [room, location.search]);
+  }, [room, location.state.user.name, location.state.user.room]);
 
   return (
     <Container className="chatsview-cont">
