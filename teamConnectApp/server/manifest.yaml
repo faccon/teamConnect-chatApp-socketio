@@ -1,0 +1,10 @@
+---
+applications:
+  - path: .
+    name: teamconnect
+    memory: 128M
+    routes:
+      - route: teamconnect.eu-gb.mybluemix.net
+    buildpacks:
+      - nodejs_buildpack
+    instances: 2
