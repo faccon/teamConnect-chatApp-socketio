@@ -6,7 +6,7 @@
 
 html,
 body {
-  height: 100vh;
+  height: 100%;
   width: 100%;
   background-color: white;
 }
@@ -50,10 +50,9 @@ h3 {
 
 .header-container {
   margin-top: 10px;
-  min-height: var(--header-height);
   background-color: wheat;
-  /* background-color: rgb(34, 34, 155); */
   color: black;
+  padding: 15px 0 15px 0;
 }
 
 .test1 {
@@ -105,10 +104,27 @@ h3 {
   text-align: center;
 }
 
+.h-100{
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.chatsview-cont {
+  width: 100%;
+  height: 95%;
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
 .chat-container {
   background: linear-gradient(rgb(223, 221, 221), white);
   width: 100%;
-  height: 85vh;
+  height: 90%;
+
 }
 
 .chat-input {
@@ -119,15 +135,11 @@ h3 {
 
 .bottom-row {
   position: relative;
-  top: 1%;
+  top: 2%;
   border-radius: 20px;
   width: 90%;
   border: 1px rgb(227, 234, 243) solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-left: 5%;
-  height: fit-content;
   padding: 2px;
   background-color: rgb(227, 234, 243);
 }
@@ -287,15 +299,13 @@ option {
 /* Medium devices (landscape tablets, 768px and up)*/
 @media only screen and (min-width: 768px) {
   .left-container {
-    margin-top: 25%;
     height: 100%;
     width: 100%;
     background-image: url('../public/images/girl.png');
     background-size: contain;
     background-repeat: no-repeat;
-    width: 100%;
-    height: 0;
     padding-top: 120%;
+    transform: translateY(5%);
   }
 
   .chatsview-cont {

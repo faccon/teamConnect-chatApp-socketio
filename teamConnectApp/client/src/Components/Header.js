@@ -31,9 +31,9 @@ function Header({ name, onlineUsers, modal }) {
               {Online
                 ? Online.map((item, i) => {
                     if (Online.length > 1 && i !== Online.length - 1) {
-                      return item + ",";
+                      return item !== name ? item + ", " : null;
                     } else {
-                      return item;
+                      return item !== name ? item : null;
                     }
                   })
                 : onlineUsers.map((item, i) => {
@@ -41,9 +41,9 @@ function Header({ name, onlineUsers, modal }) {
                       onlineUsers.length > 1 &&
                       i !== onlineUsers.length - 1
                     ) {
-                      return item + ",";
+                      return item !== name ? item + ", " : null;
                     } else {
-                      return item;
+                      return item !== name ? item : null;
                     }
                   })}
             </Col>

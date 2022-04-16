@@ -28,9 +28,8 @@ function ChatView() {
 
   return (
     <Container className="chatsview-cont">
-      <Row>
+      <Row className="h-100">
         <Col md={6} className="">
-          <div className="">
             <Header
               name={name}
               onlineUsers={location.state.user.adminMsg.onlineUsers}
@@ -40,7 +39,6 @@ function ChatView() {
               name={name}
               adminMsg={location.state.user.adminMsg}
             />
-          </div>
         </Col>
         <Col md={6} className="d-none d-md-block">
           <Dashboard onlineUsers={location.state.user.adminMsg.onlineUsers} />
