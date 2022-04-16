@@ -28,7 +28,7 @@ function Dashboard({ onlineUsers }) {
             <span className="online">Online:</span>
           </Col>
           <ul className="online-list-marker">
-            {Online !== null
+            {Online
               ? Online.map((item, index) => {
                   return <li id={index.toString()}>{item}</li>;
                 })

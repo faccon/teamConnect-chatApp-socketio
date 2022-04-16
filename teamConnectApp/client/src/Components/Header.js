@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { socket } from "../Model";
 
-function Header({ name }) {
+function Header({ name, onlineUsers }) {
   const navigate = useNavigate();
+  const [Online, setOnline] = useState();
 
   function handleLogOut() {
     socket.emit("signout");
     socket.off();
     navigate("/");
   }
+
+  useEffect(() => {
+    socket.on("message", (res) => {
+      setOnline(res.onlineUsers);
+    });
+  });
+
 
   return (
     <div className="header-container d-flex align-items-center">
@@ -24,7 +32,24 @@ function Header({ name }) {
               {name}
             </Col>
             <Col className="header-status">
-              {name ? <span>online</span> : <span>offline</span>}
+              {Online
+                ? Online.map((item, i) => {
+                    if (Online.length > 1 && i !== Online.length - 1) {
+                      return item + ",";
+                    } else {
+                      return item;
+                    }
+                  })
+                : onlineUsers.map((item, i) => {
+                    if (
+                      onlineUsers.length > 1 &&
+                      i !== onlineUsers.length - 1
+                    ) {
+                      return item + ",";
+                    } else {
+                      return item;
+                    }
+                  })}
             </Col>
           </Col>
           <Col xs={8} md={8} className="d-flex justify-content-end logout">

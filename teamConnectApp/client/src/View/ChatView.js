@@ -32,7 +32,7 @@ function ChatView() {
       <Row>
         <Col md={6} className="">
           <div className="">
-            <Header name={name} />
+            <Header name={name} onlineUsers={location.state.user.adminMsg.onlineUsers} />
             <ChatsContainer name={name} adminMsg={adminMsg} />
           </div>
         </Col>
