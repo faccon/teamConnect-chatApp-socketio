@@ -6,7 +6,7 @@ import { ActivityIndicator } from "react-native-web";
 import { signInUser } from "../Controllers";
 import { SocialIcon } from "react-social-icons";
 import { GITHUB_URL, LINKEDIN, MAILTO } from "../shared";
-import socket from "socket.io-client/lib/socket";
+import Brand from "../Components/Brand";
 
 function JoinView(params) {
   const [name, setName] = useState("");
@@ -49,17 +49,12 @@ function JoinView(params) {
           <div className="left-container "></div>
         </Col>
         <Col md={6} className="align-self-center">
-          <div className="form-header">
-            <Col sm={12}>
-              <h1 className="logo"> teamCONNECT </h1>
-              <div className="line"></div>
-            </Col>
-            <Col sm={12}>
-              <h3 className="faint mt-5 mb-2">
-                Welcome to TeamConnect, pleases login to continue
-              </h3>
-            </Col>
-          </div>
+          <Brand />
+          <Col sm={12}>
+            <h3 className=" faint mt-2 mb-3">
+              Welcome to TeamConnect, pleases login to continue
+            </h3>
+          </Col>
           <Col>
             <Form>
               <Form.Group className="mb-3">
@@ -88,7 +83,7 @@ function JoinView(params) {
               </div>
             </Form>
           </Col>
-          <Col className="d-flex justify-content-center mt-5">
+          <Col xs={{ offset: 3, span: 6 }} className="bottom-flags mt-5">
             <SocialIcon
               className="icons"
               target="_blank"

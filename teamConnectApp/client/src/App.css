@@ -41,6 +41,7 @@ h3 {
 }
 .faint {
   color: rgba(0, 0, 0, 0.5);
+  text-align: center;
 }
 
 #logo {
@@ -50,7 +51,7 @@ h3 {
 .header-container {
   margin-top: 10px;
   min-height: var(--header-height);
-  background-color: aliceblue;
+  background-color: wheat;
   /* background-color: rgb(34, 34, 155); */
   color: black;
 }
@@ -96,7 +97,6 @@ h3 {
 }
 
 .header-name {
-  text-align: center;
   font-weight: bold;
   text-transform: capitalize;
 }
@@ -242,10 +242,40 @@ option {
   cursor: pointer;
 }
 
-.icons{
+.icons {
   height: 30px;
   width: 30px;
-  margin-right: 30px;
+}
+
+.header-left {
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  cursor: pointer;
+}
+
+.online-list-marker {
+  list-style-position: inside;
+}
+
+.online-list-marker li::first-letter {
+  text-transform: uppercase;
+}
+
+.online-list-marker ::marker {
+  color: green;
+}
+
+.not-found {
+  padding-top: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif;
+}
+
+.bottom-flags {
+  display: flex;
+  justify-content: space-around;
 }
 
 /* Extra small devices (phones, 600px and down)
@@ -302,18 +332,6 @@ option {
     font-family: 'Poppins', sans-serif;
   }
 
-  /* .online {
-    font-weight: bold;
-  } */
-
-  .online-list-marker {
-    list-style-position: inside;
-  }
-
-  .online-list-marker ::marker {
-    color: green;
-  }
-
   .header-container {
     margin-top: 10px;
     min-height: var(--header-height);
@@ -323,7 +341,6 @@ option {
   .brand {
     text-align: center;
     /* background-color: aliceblue; */
-
   }
 }
 
