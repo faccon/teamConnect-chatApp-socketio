@@ -10,13 +10,16 @@ function ChatView() {
   let location = useLocation();
   const [name, setName] = useState("");
   const [room, setRoom] = useState("");
+  const [adminMsg, setAdminMsg] = useState("");
 
   useEffect(() => {
-    const name = location.state.user.name;
-    const room = location.state.user.room;
+    const name = location.state.user.user.name;
+    const room = location.state.user.user.room;
+    const adminMsg = location.state.user.adminMsg;
 
     setName(name);
     setRoom(room);
+    setAdminMsg(adminMsg);
 
     return () => {
       socket.emit("disconnect");
@@ -30,11 +33,11 @@ function ChatView() {
         <Col md={6} className="">
           <div className="">
             <Header name={name} />
-            <ChatsContainer name={name} />
+            <ChatsContainer name={name} adminMsg={adminMsg} />
           </div>
         </Col>
         <Col md={6} className="d-none d-md-block">
-          <Dashboard onlineUsers={location.state.onlineUsers} />
+          <Dashboard onlineUsers={location.state.user.adminMsg.onlineUsers} />
         </Col>
       </Row>
     </Container>

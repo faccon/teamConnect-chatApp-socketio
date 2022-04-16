@@ -3,7 +3,7 @@ import { Col, Form, Row } from "react-bootstrap";
 import { socket } from "../Model";
 import ReactEmoji from "react-emoji";
 
-function ChatsContainer({ name }) {
+function ChatsContainer({ name, adminMsg }) {
   const [message, setMessage] = useState("");
   const [messages, setMessages] = useState([]);
 
@@ -19,9 +19,13 @@ function ChatsContainer({ name }) {
   }
 
   useEffect(() => {
+    setMessages([adminMsg]);
+  }, [adminMsg]);
+
+  useEffect(() => {
     socket.on("message", (message) => {
       setMessages([...messages, message]);
-      // console.log(message);
+      console.log(message);
     });
   });
 

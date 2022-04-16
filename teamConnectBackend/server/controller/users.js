@@ -30,12 +30,14 @@ function getUser(id) {
   return users.find((user) => user.id == id);
 }
 
-function removeUser({ id }) {
+function removeUser(id) {
   const index = users.findIndex((user) => user.id === id);
+  const removedUser = users[index];
 
   if (index !== -1) {
     users.splice(index, 1)[0];
-  } else null;
+    return removedUser;
+  } else return null;
 }
 
 function getUserInRoom(room) {

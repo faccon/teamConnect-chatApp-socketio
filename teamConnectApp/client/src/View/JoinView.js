@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Container, Col, Row, Form } from "react-bootstrap";
-import {  useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { ActivityIndicator } from "react-native-web";
 import { signInUser } from "../Controllers";
 import { SocialIcon } from "react-social-icons";
 import { GITHUB_URL, LINKEDIN, MAILTO } from "../shared";
+import socket from "socket.io-client/lib/socket";
 
 function JoinView(params) {
   const [name, setName] = useState("");
@@ -25,7 +26,9 @@ function JoinView(params) {
           alert(user.error);
           setIsLogging(false);
         } else {
-          navigate(`./chat?name=${name}&room=${room}`, { state: user });
+          navigate(`./chat?name=${name}&room=${room}`, {
+            state: { user },
+          });
         }
       });
     }
@@ -86,33 +89,32 @@ function JoinView(params) {
             </Form>
           </Col>
           <Col className="d-flex justify-content-center mt-5">
-          <SocialIcon
-            className="icons"
-            target="_blank"
-            rel="noopener noreferrer"
-            fgColor="black"
-            bgColor="whitesmoke"
-            url={LINKEDIN}
-          />
-          <SocialIcon
-            className="icons"
-            target="_blank"
-            rel="noopener noreferrer"
-            fgColor="black"
-            bgColor="whitesmoke"
-            url={GITHUB_URL}
-          />
-          <SocialIcon
-            className="icons"
-            target="_blank"
-            rel="noopener noreferrer"
-            fgColor="black"
-            bgColor="whitesmoke"
-            url={MAILTO}
-          />
+            <SocialIcon
+              className="icons"
+              target="_blank"
+              rel="noopener noreferrer"
+              fgColor="black"
+              bgColor="whitesmoke"
+              url={LINKEDIN}
+            />
+            <SocialIcon
+              className="icons"
+              target="_blank"
+              rel="noopener noreferrer"
+              fgColor="black"
+              bgColor="whitesmoke"
+              url={GITHUB_URL}
+            />
+            <SocialIcon
+              className="icons"
+              target="_blank"
+              rel="noopener noreferrer"
+              fgColor="black"
+              bgColor="whitesmoke"
+              url={MAILTO}
+            />
+          </Col>
         </Col>
-        </Col>
-       
       </Row>
       <ToastContainer />
     </Container>

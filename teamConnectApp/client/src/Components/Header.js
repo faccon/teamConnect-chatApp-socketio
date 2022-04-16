@@ -7,7 +7,7 @@ function Header({ name }) {
   const navigate = useNavigate();
 
   function handleLogOut() {
-    socket.emit("disconnect");
+    socket.emit("signout");
     socket.off();
     navigate("/");
   }
