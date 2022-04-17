@@ -3,18 +3,10 @@ import { Col, Container, Row } from "react-bootstrap";
 import { socket } from "../Model";
 import {
   Button,
-  createTheme,
-  Divider,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
 } from "@mui/material";
 import InviteFriends from "../Components/InviteModal";
-import { ThemeProvider } from "@mui/styles";
 
-function Dashboard({ onlineUsers }) {
+function Dashboard({ onlineUsers, name, room }) {
   const [Online, setOnline] = useState(null);
   const [Invitations, setInvitations] = useState([]);
   const [modal, setModal] = useState(false);
@@ -113,6 +105,8 @@ function Dashboard({ onlineUsers }) {
           handleClose={toggleModal}
           invitaions={Invitations}
           updateSent={setInvitations}
+          room={room}
+          name={name}
         />
       </Container>
     </div>

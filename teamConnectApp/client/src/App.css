@@ -339,6 +339,22 @@ button:hover {
   color: white;
 }
 
+.selected-room {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.room-name {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.room-change {
+  text-decoration: underline;
+  color: black;
+  cursor: pointer;
+}
+
 /* Extra small devices (phones, 600px and down)
 @media only screen and (max-width: 600px) {...} */
 

@@ -5,27 +5,26 @@ import { useNavigate } from "react-router-dom";
 import { signInUser } from "../Controllers";
 import { SocialIcon } from "react-social-icons";
 import { GITHUB_URL, LINKEDIN, MAILTO } from "../shared";
+import { useParams } from "react-router-dom";
 import Brand from "../Components/Brand";
 
-function JoinView(params) {
+function JoinView() {
   const [name, setName] = useState("");
-  const [room, setRoom] = useState("");
-  const [loginbtn, setLoginbtn] = useState("Login");
-  const [isLogging, setIsLogging] = useState(false);
+  const [room, setRoom] = useState(null);
+  const [def, setDef] = useState(false);
   const navigate = useNavigate();
+  const params = useParams();
 
   function handleSubmit(event) {
     if (!name || !room) {
       event.preventDefault();
       alert("Please enter a name and select a room");
-      setIsLogging(false);
     } else {
       signInUser(name, room, (user) => {
         if (user.error) {
           alert(user.error);
-          setIsLogging(false);
         } else {
-          navigate(`./chat?name=${name}&room=${room}`, {
+          navigate(`/chat?name=${name}&room=${room}`, {
             state: { user },
           });
         }
@@ -33,6 +32,17 @@ function JoinView(params) {
     }
   }
 
+  function handleRoomChange() {
+    setRoom(null)
+    setDef(false)
+  }
+
+  useEffect(() => {
+    if (params.room) {
+      setRoom(params.room);
+      setDef(true);
+    }
+  }, [params.room]);
 
   return (
     <Container className="main-container">
@@ -58,20 +68,30 @@ function JoinView(params) {
                 />
               </Form.Group>
 
-              <Form.Select
-                onChange={(event) => setRoom(event.target.value)}
-                aria-label="Default select example"
-              >
-                <option>Choose room</option>
-                <option value="Chatroom">Chatroom</option>
-                <option value="Technology">Technology</option>
-                <option value="Trading">Trading</option>
-              </Form.Select>
+              {!def ? (
+                <Form.Select
+                  onChange={(event) => setRoom(event.target.value)}
+                  aria-label="Default select example"
+                >
+                  <option>Choose room</option>
+                  <option value="Chatroom">Chatroom</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Trading">Trading</option>
+                </Form.Select>
+              ) : (
+                <div className="selected-room">
+                  <div className="room-name">{params.room}</div>
+                  <div onClick={handleRoomChange} className="room-change">
+                    change room
+                  </div>
+                </div>
+              )}
+
               <div
                 onClick={(event) => handleSubmit(event)}
                 className="submit-button mt-5"
               >
-                {loginbtn}
+                {params.room ? "Join!" : "Login"}
               </div>
             </Form>
           </Col>

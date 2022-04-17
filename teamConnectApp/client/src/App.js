@@ -9,7 +9,9 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<JoinView />} />
+      <Route path="/invite/:room" element={<JoinView />} />
       <Route path="/chat" element={<ChatView />} />
+      <Route path="" element={<ChatView />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

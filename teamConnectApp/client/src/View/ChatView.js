@@ -30,18 +30,19 @@ function ChatView() {
     <Container className="chatsview-cont">
       <Row className="h-100">
         <Col md={6} className="">
-            <Header
-              name={name}
-              onlineUsers={location.state.user.adminMsg.onlineUsers}
-              modal={() => setModal(!modal)}
-            />
-            <ChatsContainer
-              name={name}
-              adminMsg={location.state.user.adminMsg}
-            />
+          <Header
+            name={name}
+            onlineUsers={location.state.user.adminMsg.onlineUsers}
+            modal={() => setModal(!modal)}
+          />
+          <ChatsContainer name={name} adminMsg={location.state.user.adminMsg} />
         </Col>
         <Col md={6} className="d-none d-md-block">
-          <Dashboard onlineUsers={location.state.user.adminMsg.onlineUsers} />
+          <Dashboard
+            name={name}
+            room={room}
+            onlineUsers={location.state.user.adminMsg.onlineUsers}
+          />
         </Col>
       </Row>
       <ModalComp

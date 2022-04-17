@@ -1,11 +1,17 @@
-import { Box, Button, Grid, Modal } from "@mui/material";
+import { Box, Grid, Modal } from "@mui/material";
 import React, { useState } from "react";
 import LoadingButton from "./LoadingButton";
 
-function InviteModal({ state, handleClose, updateSent, invitaions }) {
+function InviteModal({
+  state,
+  handleClose,
+  updateSent,
+  invitaions,
+  room,
+  name,
+}) {
   const [Mode, setMode] = useState("");
   const [to, setTo] = useState("");
-  const [sender, setSender] = useState("Admin");
   const [recipient, setRecipient] = useState();
   const [sending, setSending] = useState("");
 
@@ -19,9 +25,9 @@ function InviteModal({ state, handleClose, updateSent, invitaions }) {
       mode: "cors",
       body: JSON.stringify({
         to,
-        sender,
+        sender: name,
         recipient,
-        url: "http://localhost:3000/join?room=Chatroom",
+        url: `http://localhost:3000/invite/${room}`,
       }),
     })
       .then(() => {
