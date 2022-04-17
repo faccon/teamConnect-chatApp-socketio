@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Container, Col, Row, Form } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { ActivityIndicator } from "react-native-web";
 import { signInUser } from "../Controllers";
 import { SocialIcon } from "react-social-icons";
 import { GITHUB_URL, LINKEDIN, MAILTO } from "../shared";
@@ -34,13 +33,6 @@ function JoinView(params) {
     }
   }
 
-  useEffect(() => {
-    if (isLogging) {
-      setLoginbtn(
-        <ActivityIndicator color="hsla(196, 61%, 58%, 0.75)" size={25} />
-      );
-    } else setLoginbtn("Login");
-  }, [isLogging]);
 
   return (
     <Container className="main-container">

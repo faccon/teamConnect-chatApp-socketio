@@ -104,7 +104,7 @@ h3 {
   text-align: center;
 }
 
-.h-100{
+.h-100 {
   height: 100%;
   width: 100%;
   margin: 0;
@@ -124,7 +124,6 @@ h3 {
   background: linear-gradient(rgb(223, 221, 221), white);
   width: 100%;
   height: 90%;
-
 }
 
 .chat-input {
@@ -288,6 +287,56 @@ option {
 .bottom-flags {
   display: flex;
   justify-content: space-around;
+}
+
+.input {
+  background-color: transparent;
+  color: whitesmoke;
+}
+
+.input:focus {
+  background-color: transparent;
+  color: whitesmoke;
+}
+
+button {
+  background-color: transparent;
+  border: 1px solid whitesmoke;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+  width: 80%;
+  height: 40px;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.spinner {
+  margin-right: 10px;
+}
+.success {
+  margin-right: 10px;
+  color: green;
+}
+.inv-item {
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+  padding-left: 10px;
+  text-transform: capitalize;
+}
+
+.iv-icon {
+  margin-left: 20px;
+  color: green;
+  font-size: 15px;
+}
+
+button:hover {
+  background-color: rgba(0, 0, 255, 0.2);
+  color: white;
 }
 
 /* Extra small devices (phones, 600px and down)
