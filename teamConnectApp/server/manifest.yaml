@@ -7,4 +7,4 @@ applications:
       - route: teamconnect.eu-gb.mybluemix.net
     buildpacks:
       - nodejs_buildpack
-    instances: 2
+    instances: 1
