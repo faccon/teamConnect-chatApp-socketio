@@ -32,6 +32,7 @@ function ChatView() {
         <Col md={6} className="">
           <Header
             name={name}
+            room={room}
             onlineUsers={location.state.user.adminMsg.onlineUsers}
             modal={() => setModal(!modal)}
           />

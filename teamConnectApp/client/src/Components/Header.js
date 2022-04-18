@@ -17,6 +17,10 @@ function Header({ name, room, onlineUsers, modal }) {
     });
   });
 
+  useEffect(() => {
+    console.log(room);
+  }, [room]);
+
   function handleLogOut() {
     socket.emit("signout");
     socket.off();
