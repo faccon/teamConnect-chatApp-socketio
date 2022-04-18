@@ -2,16 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { socket } from "../Model";
+import InviteModal from "./InviteModal";
 
-function Header({ name, onlineUsers, modal }) {
+function Header({ name, room, onlineUsers, modal }) {
   const navigate = useNavigate();
   const [Online, setOnline] = useState();
-
-  function handleLogOut() {
-    socket.emit("signout");
-    socket.off();
-    navigate("/");
-  }
+  const [invModal, setInvModal] = useState(false);
+  const [Invitations, setInvitations] = useState([]);
 
   useEffect(() => {
     socket.on("message", (res) => {
@@ -19,11 +16,21 @@ function Header({ name, onlineUsers, modal }) {
     });
   });
 
+  function handleLogOut() {
+    socket.emit("signout");
+    socket.off();
+    navigate("/");
+  }
+
+  const toggleInvModal = () => {
+    setInvModal(!invModal);
+  };
+
   return (
     <div className="header-container d-flex align-items-center">
       <Row md={12} className="d-flex align-items-center w-100 m-0">
         <Col xs={12} md={12} className="d-flex align-items-center p">
-          <Col xs={2} md={12} className="header-left w-75" onClick={modal}>
+          <Col xs={8} md={10} className="header-left" onClick={modal}>
             <Col xs={12} className="header-name">
               {name}
             </Col>
@@ -48,13 +55,29 @@ function Header({ name, onlineUsers, modal }) {
                   })}
             </Col>
           </Col>
-          <Col xs={8} md={8} className="d-flex justify-content-end w-25 logout">
-            <span onClick={handleLogOut} className="material-icons md-24">
+          <Col xs={2} className="d-flex ic-cont me-3 d-block d-md-none">
+            <span onClick={toggleInvModal} className="material-icons-outlined ic-cont">
+              person_add_alt
+            </span>
+          </Col>
+          <Col xs={2} md={2} className="d-flex ic-cont logout">
+            <span
+              onClick={handleLogOut}
+              className="material-icons-outlined ic-cont"
+            >
               logout
             </span>
           </Col>
         </Col>
       </Row>
+      <InviteModal
+        state={invModal}
+        handleClose={toggleInvModal}
+        invitations={Invitations}
+        updateSent={setInvitations}
+        room={room}
+        name={name}
+      />
     </div>
   );
 }

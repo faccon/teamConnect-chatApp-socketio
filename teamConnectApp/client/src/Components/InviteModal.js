@@ -1,15 +1,17 @@
 import { Box, Grid, Modal } from "@mui/material";
 import React, { useState } from "react";
+import { useStyles } from "../shared";
 import LoadingButton from "./LoadingButton";
 
 function InviteModal({
   state,
   handleClose,
   updateSent,
-  invitaions,
+  invitations,
   room,
   name,
 }) {
+  const styles = useStyles();
   const [Mode, setMode] = useState("");
   const [to, setTo] = useState("");
   const [recipient, setRecipient] = useState();
@@ -32,7 +34,7 @@ function InviteModal({
     })
       .then(() => {
         setSending("sent");
-        updateSent([...invitaions, recipient]);
+        updateSent([...invitations, recipient]);
         setTimeout(() => {
           handleClose();
           setSending("");
@@ -59,18 +61,7 @@ function InviteModal({
       open={state}
       onClose={handleClose}
     >
-      <Box
-        sx={{
-          width: "50%",
-          height: "50%",
-          color: "white",
-          alignItems: "center",
-          justifyContent: "center",
-          display: "flex",
-          backgroundColor: "black",
-          borderRadius: "10px",
-        }}
-      >
+      <Box className={styles.box}>
         <Grid container justifyContent="center" spacing={2}>
           <Grid item xs={10} md={8}>
             {/* Mode */}

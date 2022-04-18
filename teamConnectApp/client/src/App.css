@@ -2,6 +2,7 @@
 
 :root {
   --header-height: 10vh;
+  --icon-size: 15px
 }
 
 html,
@@ -251,6 +252,7 @@ option {
 .logout,
 .send {
   cursor: pointer;
+  font-size: var(--icon-size);
 }
 
 .icons {
@@ -354,6 +356,19 @@ button:hover {
   color: black;
   cursor: pointer;
 }
+
+.ic-cont {
+  background-color: whitesmoke;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid whitesmoke;
+  border-radius: 50%;
+  height: fit-content;
+  width: fit-content;
+  padding: 3px;
+}
+
 
 /* Extra small devices (phones, 600px and down)
 @media only screen and (max-width: 600px) {...} */
