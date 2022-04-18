@@ -1,5 +1,6 @@
-import { Box, Grid, Modal } from "@mui/material";
+import { Box, Chip, Divider, Grid, Modal } from "@mui/material";
 import React, { useState } from "react";
+import { Col } from "react-bootstrap";
 import { useStyles } from "../shared";
 import LoadingButton from "./LoadingButton";
 
@@ -55,7 +56,6 @@ function InviteModal({
         justifyContent: "center",
         backgroundColor: "rgba(0, 0, 0, 0.6)",
         alignItems: "center",
-
         display: "flex",
       }}
       open={state}
@@ -63,56 +63,84 @@ function InviteModal({
     >
       <Box className={styles.box}>
         <Grid container justifyContent="center" spacing={2}>
-          <Grid item xs={10} md={8}>
-            {/* Mode */}
+          {/* Visible on below md devices */}
+          <Col xs={10} className="d-block d-md-none">
+            <span>Sent Invitations</span>
+            <Divider sx={{ color: "white", borderWidth: "2" }} />
+            <div className="sent-iv-md">
+              {invitations && invitations.length > 0 ? (
+                invitations.map((item, i) => {
+                  return (
+                    <Chip
+                      key={i}
+                      label={item}
+                      color="primary"
+                      variant="outlined"
+                      sx={{ marginRight: "0.3rem" }}
+                      icon={
+                        <span className="iv-icon material-icons-outlined">
+                          check_circle_outline
+                        </span>
+                      }
+                    />
+                  );
+                })
+              ) : (
+                <span>No invitations sent yet!</span>
+              )}
+            </div>
+          </Col>
+
+          {/* Mode */}
+          <Grid item xs={10}>
             <select
-              className="form-select form-select-md mb-3 input"
+              className="form-select form-select-md mb-1 input"
               onChange={handleChange}
             >
               <option value="Email">Email</option>
             </select>
+          </Grid>
 
-            {/* Mode */}
-            <Grid item xs={12}>
-              <div class="mb-3">
-                <label for="email" class="form-label">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  className="form-control input"
-                  placeholder="Enter email"
-                  onChange={(event) => setTo(event.target.value)}
-                ></input>
-              </div>
-            </Grid>
+          {/* Email */}
+          <Grid item xs={10}>
+            <div class="mb-1">
+              <label for="email" class="form-label">
+                Email
+              </label>
+              <input
+                type="email"
+                className="form-control input"
+                placeholder="Enter email"
+                onChange={(event) => setTo(event.target.value)}
+              ></input>
+            </div>
+          </Grid>
 
-            {/* Name */}
-            <Grid item xs={12}>
-              <div class="mb-3">
-                <label for="name" class="form-label">
-                  Name
-                </label>
-                <input
-                  type="name"
-                  className="form-control input"
-                  placeholder="Nickname"
-                  onChange={(event) => setRecipient(event.target.value)}
-                ></input>
-              </div>
-            </Grid>
+          {/* Name */}
+          <Grid item xs={10}>
+            <div class="mb-1">
+              <label for="name" class="form-label">
+                Name
+              </label>
+              <input
+                type="name"
+                className="form-control input"
+                placeholder="Nickname"
+                onChange={(event) => setRecipient(event.target.value)}
+              ></input>
+            </div>
+          </Grid>
 
-            {/* Send */}
-            <Grid
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-              item
-              xs={12}
-            >
-              <LoadingButton state={sending} action={sendInvite} />
-            </Grid>
+          {/* Send */}
+          <Grid
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+            }}
+            item
+            xs={10}
+          >
+            <LoadingButton state={sending} action={sendInvite} />
           </Grid>
         </Grid>
       </Box>

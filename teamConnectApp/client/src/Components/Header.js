@@ -1,3 +1,4 @@
+import { Badge } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
@@ -56,9 +57,18 @@ function Header({ name, room, onlineUsers, modal }) {
             </Col>
           </Col>
           <Col xs={2} className="d-flex ic-cont me-3 d-block d-md-none">
-            <span onClick={toggleInvModal} className="material-icons-outlined ic-cont">
-              person_add_alt
-            </span>
+            <Badge
+              color="secondary"
+              variant="standard"
+              badgeContent={Invitations.length}
+            >
+              <span
+                onClick={toggleInvModal}
+                className="material-icons-outlined ic-cont"
+              >
+                person_add_alt
+              </span>
+            </Badge>
           </Col>
           <Col xs={2} md={2} className="d-flex ic-cont logout">
             <span

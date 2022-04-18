@@ -1,25 +1,53 @@
 import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { socket } from "../Model";
-import {
-  Button,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import InviteFriends from "../Components/InviteModal";
+import LoadingButton from "../Components/LoadingButton";
+import { MAIL, NAME } from "../shared";
 
 function Dashboard({ onlineUsers, name, room }) {
   const [Online, setOnline] = useState(null);
   const [Invitations, setInvitations] = useState([]);
   const [modal, setModal] = useState(false);
-
-  const toggleModal = () => {
-    setModal(!modal);
-  };
+  const [sending, setSending] = useState("");
 
   useEffect(() => {
     socket.on("message", (res) => {
       setOnline(res.onlineUsers);
     });
   });
+
+  const toggleModal = () => {
+    setModal(!modal);
+  };
+
+  const inviteMe = async () => {
+    setSending("sending");
+    await fetch("http://127.0.0.1:5001/send/template/invite", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      mode: "cors",
+      body: JSON.stringify({
+        to: MAIL,
+        sender: name,
+        recipient: NAME,
+        url: `http://localhost:3000/invite/${room}`,
+      }),
+    })
+      .then(() => {
+        setSending("sent");
+        setInvitations([...Invitations, NAME]);
+        setTimeout(() => {
+          setSending("");
+        }, 2000);
+      })
+      .catch((err) => {
+        setSending("error");
+      });
+  };
 
   return (
     <div className="right-panel">
@@ -49,21 +77,23 @@ function Dashboard({ onlineUsers, name, room }) {
 
           {/* Sent Invitations */}
           <Col md={6}>
-            {Invitations ? (
-              <>
-                <span className="online">Sent Invitations:</span>
-                {Invitations.map((item, index) => {
-                  return (
-                    <div className="inv-item" id={index.toString()}>
-                      {item}
-                      <span className="iv-icon material-icons-outlined">
-                        check_circle_outline
-                      </span>
-                    </div>
-                  );
-                })}
-              </>
-            ) : null}
+            <div className="iv-container">
+              {Invitations ? (
+                <>
+                  <span className="online">Sent Invitations:</span>
+                  {Invitations.map((item, index) => {
+                    return (
+                      <div className="inv-item" id={index.toString()}>
+                        {item}
+                        <span className="iv-icon material-icons-outlined">
+                          check_circle_outline
+                        </span>
+                      </div>
+                    );
+                  })}
+                </>
+              ) : null}
+            </div>
             <Button
               onClick={toggleModal}
               size="small"
@@ -95,9 +125,12 @@ function Dashboard({ onlineUsers, name, room }) {
             <span className="title">Designed by: BABS</span>
           </Col>
           <Col md={6} className="mt-3">
-            <Button size="small" color="secondary" variant="outlined">
-              Invite to chat
-            </Button>
+            <LoadingButton
+              className="custom-btn"
+              spinnerColor="black"
+              state={sending}
+              action={inviteMe}
+            />
           </Col>
         </Row>
         <InviteFriends

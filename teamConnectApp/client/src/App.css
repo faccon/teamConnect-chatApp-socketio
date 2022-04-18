@@ -2,7 +2,7 @@
 
 :root {
   --header-height: 10vh;
-  --icon-size: 15px
+  --icon-size: 15px;
 }
 
 html,
@@ -322,6 +322,10 @@ button {
   margin-right: 10px;
   color: green;
 }
+
+.spinner {
+  margin-right: 10px;
+}
 .inv-item {
   display: flex;
   align-items: center;
@@ -369,7 +373,30 @@ button:hover {
   padding: 3px;
 }
 
+.sent-iv-md {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  overflow-x: auto;
+  min-height: 50px;
+}
 
+.custom-btn {
+  background-color: transparent;
+  border-color: #e040fb;
+  color: #6a1b9a;
+}
+
+.custom-btn:hover {
+  background-color: transparent;
+  border-color: #6a1b9a;
+  color: #e040fb;
+}
+
+.iv-container {
+  max-height: 100px;
+  overflow-y: auto;
+}
 /* Extra small devices (phones, 600px and down)
 @media only screen and (max-width: 600px) {...} */
 
