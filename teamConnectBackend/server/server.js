@@ -12,8 +12,7 @@ const {
 } = require("./controller/users");
 
 const app = express();
-// const PORT = process.env.PORT || 8080;
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 8080;
 
 app.use(router);
 app.use(cors());
@@ -41,7 +40,7 @@ io.on("connection", (socket) => {
         user: "admin",
         text: `${user.name} has joined the room.`,
         onlineUsers: [...getUserInRoom(user.room)],
-      })
+      });
 
       socket.broadcast.to(user.room).emit("roomInfo", {
         room: user.room,
@@ -77,4 +76,4 @@ io.on("connection", (socket) => {
   });
 });
 
-server.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+server.listen(PORT);
