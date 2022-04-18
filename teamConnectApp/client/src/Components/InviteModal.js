@@ -1,7 +1,7 @@
 import { Box, Chip, Divider, Grid, Modal } from "@mui/material";
 import React, { useState } from "react";
 import { Col } from "react-bootstrap";
-import { useStyles } from "../shared";
+import { APP_URL, NODEJS_API_URL, useStyles } from "../shared";
 import LoadingButton from "./LoadingButton";
 
 function InviteModal({
@@ -20,7 +20,7 @@ function InviteModal({
 
   const sendInvite = async () => {
     setSending("sending");
-    await fetch("http://127.0.0.1:5001/send/template/invite", {
+    await fetch(`${NODEJS_API_URL}/send/template/invite`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -30,7 +30,7 @@ function InviteModal({
         to,
         sender: name,
         recipient,
-        url: `http://localhost:3000/invite/${room}`,
+        url: `${APP_URL}/invite/${room}`,
       }),
     })
       .then(() => {

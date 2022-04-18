@@ -6,6 +6,8 @@ export const LINKEDIN = "https://www.linkedin.com/in/faccon/";
 export const MAILTO = "mailto:adeniyi.germany@gmail.com";
 export const MAIL = "adeniyi.germany@gmail.com";
 export const NAME = "Babatunde Adeniyi";
+export const NODEJS_API_URL = "https://babs-nodejs-es.eu-de.mybluemix.net"
+export const APP_URL = "http://teamconnect.babdevs.com"
 
 export const useStyles = makeStyles({
   box: {

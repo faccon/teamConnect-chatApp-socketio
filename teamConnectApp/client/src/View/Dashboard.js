@@ -4,7 +4,7 @@ import { socket } from "../Model";
 import { Button } from "@mui/material";
 import InviteFriends from "../Components/InviteModal";
 import LoadingButton from "../Components/LoadingButton";
-import { MAIL, NAME } from "../shared";
+import { APP_URL, MAIL, NAME, NODEJS_API_URL } from "../shared";
 
 function Dashboard({ onlineUsers, name, room }) {
   const [Online, setOnline] = useState(null);
@@ -24,7 +24,7 @@ function Dashboard({ onlineUsers, name, room }) {
 
   const inviteMe = async () => {
     setSending("sending");
-    await fetch("http://127.0.0.1:5001/send/template/invite", {
+    await fetch(`${NODEJS_API_URL}/send/template/invite`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -34,7 +34,7 @@ function Dashboard({ onlineUsers, name, room }) {
         to: MAIL,
         sender: name,
         recipient: NAME,
-        url: `http://localhost:3000/invite/${room}`,
+        url: `${APP_URL}/invite/${room}`,
       }),
     })
       .then(() => {
