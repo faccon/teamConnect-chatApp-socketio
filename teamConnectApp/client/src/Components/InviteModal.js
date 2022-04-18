@@ -13,7 +13,7 @@ function InviteModal({
   name,
 }) {
   const styles = useStyles();
-  const [Mode, setMode] = useState("");
+  const [, setMode] = useState("");
   const [to, setTo] = useState("");
   const [recipient, setRecipient] = useState();
   const [sending, setSending] = useState("");

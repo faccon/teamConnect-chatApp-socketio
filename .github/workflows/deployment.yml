@@ -16,8 +16,8 @@ defaults:
     working-directory: teamConnectApp/client
 
 jobs:
-  setup-build-publish-deploy:
-    name: Setup, Build, Publish, and Deploy
+  setup-build-publish-deploy-frontend:
+    name: Setup, Build, Publish, and Deploy Frontend App
     runs-on: ubuntu-latest
 
     steps:
@@ -52,4 +52,19 @@ jobs:
       - name: Deploy manifest file from ./server folder
         run: ibmcloud cf push -f $MANIFEST_NAME
         working-directory: teamConnectApp/server
+        shell: bash
+
+  deploy-backend:
+    name: Deploy chat backend 
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: | 
+          npm ci --production
+        shell: bash
+      - name: Deploy manifest file from ./server folder
+        run: ibmcloud cf push -f $MANIFEST_NAME
+        working-directory: teamConnectBackend/server
         shell: bash
