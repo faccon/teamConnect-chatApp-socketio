@@ -60,11 +60,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Install npm dependencies
-        run: | 
-          npm ci --production
-        shell: bash
-       - name: Install IBM CLI
+      - name: Install IBM CLI
         run: |
           curl -fsSL https://clis.cloud.ibm.com/install/linux | sh
           ibmcloud --version
@@ -73,10 +69,6 @@ jobs:
       - name: Install npm dependencies
         run: | 
           npm ci --production
-        shell: bash
-      - name: Build production and move to ./server
-        run: | 
-          npm start
         shell: bash
       - name: Install CF plugin
         run: ibmcloud cf install -f
